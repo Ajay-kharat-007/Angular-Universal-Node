@@ -1,0 +1,218 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "Fish-Tokri": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/Fish-Tokri/browser",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest",
+              "src/assets/icons",
+              "src/assets/images"
+            ],
+            "styles": [
+              "src/styles.scss",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
+              "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/jquery-3.6.0.min.js",
+              "src/assets/js/auto-height.js",
+              "src/assets/js/clipboard.min.js",
+              "src/assets/js/copy-clipboard.js",
+              "src/assets/js/delivery-option.js",
+              "src/assets/js/filter-sidebar.js",
+              "src/assets/js/fly-cart.js",
+              "src/assets/js/jquery-3.6.0.min.js",
+              "src/assets/js/jquery-ui.min.js",
+              "src/assets/js/landing-script.js",
+              "src/assets/js/lazysizes.min.js",
+              "src/assets/js/lusqsztk.js",
+              "src/assets/js/nav-tab.js",
+              "src/assets/js/otp.js",
+              "src/assets/js/quantity.js",
+              "src/assets/js/quantity-2.js",
+              "src/assets/js/script.js",
+              "src/assets/js/sticky-cart-bottom.js",
+              "src/assets/js/swiper-bundle.min.js",
+              "src/assets/js/table-column-remove.js",
+              "src/assets/js/theme-setting.js",
+              "src/assets/js/wizard.js",
+              "src/assets/js/wow.min.js",
+              "src/assets/js/slick/slick.js",
+              "src/assets/js/slick/slick-animation.min.js",
+              "src/assets/js/feather/feather.min.js",
+              "src/assets/js/feather/feather-icon.js",
+              "src/assets/js/bootstrap/bootstrap-notify.min.js",
+              "src/assets/js/bootstrap/bootstrap.bundle.min.js",
+              "src/assets/js/bootstrap/popper.min.js",
+              "src/assets/js/slick/custom_slick.js"
+            ],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "8mb",
+                  "maximumError": "8mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "8mb",
+                  "maximumError": "8mb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "Fish-Tokri:build:production"
+            },
+            "development": {
+              "browserTarget": "Fish-Tokri:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "Fish-Tokri:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              "src/manifest.webmanifest",
+              "src/assets/icons",
+              "src/assets/images"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/Fish-Tokri/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false,
+              "vendorChunk": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "Fish-Tokri:build:development",
+              "serverTarget": "Fish-Tokri:server:development"
+            },
+            "production": {
+              "browserTarget": "Fish-Tokri:build:production",
+              "serverTarget": "Fish-Tokri:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "Fish-Tokri:build:production",
+              "serverTarget": "Fish-Tokri:server:production"
+            },
+            "development": {
+              "browserTarget": "Fish-Tokri:build:development",
+              "serverTarget": "Fish-Tokri:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "cd9ac9c5-0560-4d62-97cc-59c0769bdf79"
+  }
+}
